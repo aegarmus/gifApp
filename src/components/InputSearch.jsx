@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export const InputSearch = () => {
+export const InputSearch = ({onNewSearch}) => {
 
     const [ inputSearch, setInputSearch ] = useState('')
 
@@ -9,9 +9,17 @@ export const InputSearch = () => {
         setInputSearch(target.value)
     }
 
+    const onSubmit = ( event ) => {
+        event.preventDefault();
+        if(inputSearch.trim().length <= 1) return
+        setInputSearch('')
+        onNewSearch(inputSearch.trim())
+
+
+    }
 
     return(
-        <form>
+        <form onSubmit = {onSubmit}>
             <input 
                 type="text" 
                 placeholder="Ingrese el contenido del gif que deseas buscar"

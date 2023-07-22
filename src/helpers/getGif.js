@@ -20,8 +20,6 @@ export const getGif = async (query) => {
         return gifData
     })
 
-    console.log(gifs)
-
     return gifs
 }
 
