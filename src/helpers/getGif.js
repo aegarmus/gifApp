@@ -1,4 +1,4 @@
-export const getGifs = async( name ) => {
+export const getGif = async( name ) => {
 
     const url = `https://api.giphy.com/v1/gifs/search?api_key=28l2E9TR69l99LJNSjsiTyL2I7wGGcSm&q=${name}&limit=10`;
     const resp = await fetch( url );
