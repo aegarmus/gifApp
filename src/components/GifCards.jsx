@@ -1,27 +1,30 @@
-import {useState} from 'react'
-import { GifImg } from "./GifImg"
-import { getGif } from "../helpers/getGif"
+import { GifImg } from './GifImg';
+import { useFetch } from '../hooks/useFetch';
 
-export const GifCards = ({search}) => {
+export const GifCards = ({ search }) => {
 
-    const [images, setImages] = useState([])
-
-    const getImages = async() => {
-        const newImages = await getGif(search)
-        setImages(newImages)
-
-    }
-
-    getImages()
-
+    const images = useFetch( search );
+    
     return (
         <>
-            <h3>{search}</h3>
-            <div>
+            <h3>{ search }</h3>
+            {
+               
+            }
+            
+
+            <div className="card-grid">
                 {
-                  <GifImg key= {search.id}{...images} />
+                    images.map( ( image ) => (
+                        <GifImg
+                            key={ image.id } 
+                            { ...image }
+                        />
+                    ))
                 }
+                
             </div>
+
         </>
     )
 }

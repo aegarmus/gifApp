@@ -1,8 +1,12 @@
 
-export const GifImg = ({ url, title }) => {
+
+export const GifImg = ({ title, url, id }) => {
+    console.log(id)
     return (
-        <div>
-            <img src = { url } alt= {title} />
-        </div>
+      <div className="card">
+          <img src={ url } alt={ title } />
+          <p>{ title }</p>
+      </div>
     )
-}
+  }
+  

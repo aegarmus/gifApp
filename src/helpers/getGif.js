@@ -1,10 +1,11 @@
+export const getGifs = async( name ) => {
 
-export const getGif = async (query) => {
-    const urlFetch = `https://api.giphy.com/v1/gifs/search?api_key=28l2E9TR69l99LJNSjsiTyL2I7wGGcSm&q=${query}`
-    const res = await fetch(urlFetch);
-    const { data } = await res.json();
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=28l2E9TR69l99LJNSjsiTyL2I7wGGcSm&q=${name}&limit=10`;
+    const resp = await fetch( url );
+    const { data } = await resp.json();
 
     const gifs = data.map(gif => {
+    
         const { id, title, images: {downsized_medium: {url}} } = gif
 
         /* const id = data.id
@@ -22,4 +23,3 @@ export const getGif = async (query) => {
 
     return gifs
 }
-

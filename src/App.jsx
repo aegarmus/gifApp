@@ -1,25 +1,33 @@
-import { useState } from "react"
-import { GifCards } from "./components/GifCards"
-import { InputSearch } from "./components/InputSearch"
+import { useState } from 'react';
+import { InputSearch, GifCards } from './components';
 
 export const App = () => {
+    
+    const [ searches, setSearches ] = useState([ ]);
+    
+    const onAddSearch = ( newSearch ) => {
+        if ( searches.includes(newSearch) ) return;
+        setSearches([ newSearch, ...searches ]);
+    }
+    
 
-  const [search, setSearch] = useState([])
+    return (
+        <>
 
-  const onAddSearch = (newSearch) => {
-    if (search.includes(newSearch)) return
-    setSearch([setSearch, ...search])
-  }
+            <h1>GifExpertApp</h1>
 
-  return (
-    <>
-      <h1>Bienvenido a mi App</h1>
+            <InputSearch
+                onNewSearch={ (value) => onAddSearch(value) }
+            />                                                                                          
 
-      {/* input */}
-      <InputSearch onNewSearch={onAddSearch}  />
+            { 
+                searches.map( ( search ) => (
+                    <GifCards  
+                        key={ search } 
+                        search={ search } />
+                ))
+            }
 
-      {/* mostrar tarjetas */}
-      <GifCards search = {search}/>
-    </>
-  )
+        </>
+    )
 }
